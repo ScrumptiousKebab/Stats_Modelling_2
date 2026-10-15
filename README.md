@@ -7,6 +7,7 @@ Each team member is responsible for completing the practical work associated wit
 - **Terry** - Week 2: Normal Linear Regression
 - **Mikael** - Week 3: Introduction to GLMs
 - **Mao** - Week 4: Binomial Regression
+- **Ammar** - Week 5: Residuals and diagnostics
 
 ## What You Need To Do
 
