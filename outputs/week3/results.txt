@@ -1,0 +1,47 @@
+WEEK 3 - RESULTS CHECKED FROM THE DATA (NOT YET R-GENERATED)
+Run code/week3_Mikael.R in RStudio to regenerate results.txt and the plots in R.
+
+Players: 620; Matches: 46; Missing values: 0
+Players injured: 115
+Zero-goal matches: 14
+Average goals scored: 1.304348
+Variance of goals scored: 1.994203
+
+GOALS PER MATCH
+goals_scored
+0    14
+1    15
+2    11
+3     5
+8     1
+
+INJURY PROPORTIONS BY POSITION
+          count  sum      mean
+position                      
+DEF         216   34  0.157407
+FWD         136   25  0.183824
+GK           62   17  0.274194
+MID         206   39  0.189320
+
+MEAN GOALS AT HOME AND AWAY
+           count      mean
+home_away                 
+Away          23  0.869565
+Home          23  1.739130
+
+POISSON GLM: goals_scored ~ opponent_rank
+Intercept: -0.493338
+Opponent rank: 0.054348
+Rate ratio for +1 opponent rank: 1.055852
+Approx. 95% CI for opponent rank coefficient: 0.016335 to 0.092360
+Deviance: 56.580466
+
+IWLS CALCULATION
+Iteration 1: intercept=-0.394784, opponent_rank=0.052203, largest change=0.6604870775
+Iteration 2: intercept=-0.488921, opponent_rank=0.054204, largest change=0.0941369410
+Iteration 3: intercept=-0.493330, opponent_rank=0.054348, largest change=0.0044088968
+Iteration 4: intercept=-0.493338, opponent_rank=0.054348, largest change=0.0000083477
+Iteration 5: intercept=-0.493338, opponent_rank=0.054348, largest change=0.0000000000
+Final max difference from fitted model: 0.0000000000
+
+Results calculated outside R from the supplied CSVs as a preview; run the R script before submission.
