@@ -1,0 +1,167 @@
+> dim(players)
+[1] 620   8
+> names(players)
+[1] "team"           "position"       "age"            "minutes_played"
+[5] "training_load"  "prev_injuries"  "bmi"            "injured"       
+> str(players)
+'data.frame':	620 obs. of  8 variables:
+ $ team          : chr  "Ashford United" "Ashford United" "Ashford United" "Ashford United" ...
+ $ position      : chr  "DEF" "GK" "DEF" "DEF" ...
+ $ age           : int  27 27 27 21 26 25 24 26 25 26 ...
+ $ minutes_played: int  3117 3960 2172 2782 3472 2242 2887 2979 2474 2558 ...
+ $ training_load : int  4 4 2 2 5 2 3 3 2 2 ...
+ $ prev_injuries : int  0 2 2 3 0 0 1 0 0 1 ...
+ $ bmi           : num  25.2 21.8 19 20.5 24.1 23.3 22.8 24.1 21.7 26.4 ...
+ $ injured       : int  1 0 0 1 0 0 0 0 0 0 ...
+> 
+> # 3. Check the binary outcome
+> table(players$injured)
+
+  0   1 
+505 115 
+> prop.table(table(players$injured))
+
+        0         1 
+0.8145161 0.1854839 
+> 
+> # 4. Fit the binomial logistic regression model
+> model1 <- glm(
++   injured ~ prev_injuries,
++   data = players,
++   family = binomial(link = "logit")
++ )
+> 
+> # 5. View the model results
+> summary(model1)
+
+Call:
+glm(formula = injured ~ prev_injuries, family = binomial(link = "logit"), 
+    data = players)
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   -2.02483    0.15364  -13.18  < 2e-16 ***
+prev_injuries  0.50308    0.08873    5.67 1.43e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 594.71  on 619  degrees of freedom
+Residual deviance: 562.71  on 618  degrees of freedom
+AIC: 566.71
+
+Number of Fisher Scoring iterations: 4
+
+> 
+> # 6. Convert the coefficient into an odds ratio
+> exp(coef(model1))
+  (Intercept) prev_injuries 
+    0.1320167     1.6538084 
+> 
+> # 7. Calculate 95% confidence intervals for odds ratios
+> exp(confint(model1))
+                   2.5 %    97.5 %
+(Intercept)   0.09672528 0.1768029
+prev_injuries 1.39080898 1.9710405
+> # Fit an adjusted binomial logistic regression model
+> model2 <- glm(
++   injured ~ prev_injuries + age + minutes_played +
++     training_load + bmi + position,
++   data = players,
++   family = binomial(link = "logit")
++ )
+> 
+> # Display the model results
+> summary(model2)
+
+Call:
+glm(formula = injured ~ prev_injuries + age + minutes_played + 
+    training_load + bmi + position, family = binomial(link = "logit"), 
+    data = players)
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)    -4.982e+00  1.949e+00  -2.557 0.010569 *  
+prev_injuries   5.071e-01  9.135e-02   5.551 2.84e-08 ***
+age             1.072e-01  2.937e-02   3.650 0.000262 ***
+minutes_played  8.268e-06  1.841e-04   0.045 0.964167    
+training_load   2.996e-01  1.144e-01   2.620 0.008790 ** 
+bmi            -3.971e-02  7.197e-02  -0.552 0.581142    
+positionFWD     5.474e-02  3.238e-01   0.169 0.865759    
+positionGK      5.764e-01  3.787e-01   1.522 0.128043    
+positionMID     1.521e-01  2.764e-01   0.550 0.582183    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 594.71  on 619  degrees of freedom
+Residual deviance: 536.22  on 611  degrees of freedom
+AIC: 554.22
+
+Number of Fisher Scoring iterations: 5
+
+> 
+> # Convert coefficients to odds ratios
+> exp(coef(model2))
+   (Intercept)  prev_injuries            age minutes_played  training_load 
+   0.006860397    1.660504441    1.113168410    1.000008268    1.349346712 
+           bmi    positionFWD     positionGK    positionMID 
+   0.961071276    1.056269216    1.779535768    1.164236631 
+> 
+> # Calculate 95% confidence intervals for odds ratios
+> exp(confint(model2))
+
+                   2.5 %    97.5 %
+(Intercept)    0.0001437 0.3026382
+prev_injuries  1.3894919 1.9895344
+age            1.0515005 1.1800897
+minutes_played 0.9996479 1.0003708
+training_load  1.0799699 1.6920871
+bmi            0.8343768 1.1069010
+positionFWD    0.5557113 1.9857373
+positionGK     0.8357091 3.7108334
+positionMID    0.6770466 2.0065781
+> 
+> # Compare the two models using AIC
+> AIC(model1, model2)
+       df     AIC
+model1  2 566.714
+model2  9 554.224
+> 
+> # Likelihood ratio test: does model2 improve on model1?
+> anova(model1, model2, test = "Chisq")
+Analysis of Deviance Table
+
+Model 1: injured ~ prev_injuries
+Model 2: injured ~ prev_injuries + age + minutes_played + training_load + 
+    bmi + position
+  Resid. Df Resid. Dev Df Deviance  Pr(>Chi)    
+1       618     562.71                          
+2       611     536.22  7    26.49 0.0004116 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> 
+> # Basic diagnostic plots for Model 2
+> par(mfrow = c(2, 2))
+> plot(model2)
+> par(mfrow = c(1, 1))
+> 
+> # Save predicted probabilities
+> players$predicted_probability <- predict(
++   model2,
++   type = "response"
++ )
+> 
+> head(players[
++   c("injured", "prev_injuries", "predicted_probability")
++ ])
+  injured prev_injuries predicted_probability
+1       1             0            0.13427657
+2       0             2            0.46727302
+3       0             2            0.22964900
+4       1             3            0.19766520
+5       0             0            0.25955390
+6       0             0            0.07213313
+> 
