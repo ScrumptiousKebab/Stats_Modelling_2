@@ -36,3 +36,45 @@ I kept all observations for now rather than removing any matches. The model stil
 
 These are just initial findings from Week 3, not a final model selection for the group project.
 
+
+
+## Week 4 - Binomial Regression
+**Mao Mao | 22 October 2026**
+
+### Initial exploration
+
+I started by reviewing the player dataset to identify a suitable binary response variable for binomial regression.
+
+I focused on the injured variable, where 1 indicates that a player experienced an injury during the current season and 0 indicates otherwise.
+
+The dataset contained 620 players, including 115 players who were injured during the season. There were no missing values in the dataset.
+
+### Model choice
+
+I decided to use binomial logistic regression because the response variable injured is binary.
+
+I first fitted a model using prev_injuries as the explanatory variable to investigate whether previous injury history was associated with current-season injury status.
+
+I then fitted an adjusted model including age, minutes_played, training_load, bmi and position to examine whether the association remained after accounting for these additional variables.
+
+### Observations
+
+A few things I noticed:
+
+- The observed proportion of injured players increased with the number of previous injuries.
+- In the initial model, prev_injuries had a positive estimated coefficient.
+- The association between prev_injuries and current-season injury status remained statistically significant in the adjusted model.
+- Age and training load were also positively associated with current-season injury status in the adjusted model.
+- The AIC was lower for the adjusted model than for the initial model, suggesting an improvement in model fit.
+
+These findings indicate statistical associations rather than causal relationships.
+
+### Next steps
+
+I will check the model output and diagnostic plots to assess whether the fitted models are reasonable.
+
+I will also save the R code and relevant outputs in the shared workspace, including the model summaries, odds ratios, confidence intervals and model comparison results.
+
+Finally, I will document any further modelling decisions and discuss the findings with the group before the final report is completed.
+
+These are my current findings from Week 4 and should not be treated as the group's final model selection.
