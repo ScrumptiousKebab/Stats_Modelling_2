@@ -29,12 +29,12 @@ For Week 3, I worked on exploring the datasets and applying the GLM methods from
 
 For Week 4, I worked on fitting and interpreting binomial logistic regression models using the player dataset.
 
--Checked the player dataset and examined the binary response variable injured.
--Explored the relationship between previous injuries and current-season injury status.
--Fitted a binomial logistic regression model using prev_injuries as the explanatory variable.
--Fitted an adjusted model including age, minutes played, training load, BMI and playing position.
--Interpreted the estimated coefficients, odds ratios, confidence intervals and p-values.
--Compared the models using AIC and a likelihood ratio test.
--Started documenting the findings and identifying further model diagnostic checks.
+- Checked the player dataset and examined the binary response variable injured.
+- Explored the relationship between previous injuries and current-season injury status.
+- Fitted a binomial logistic regression model using prev_injuries as the explanatory variable.
+- Fitted an adjusted model including age, minutes played, training load, BMI and playing position.
+- Interpreted the estimated coefficients, odds ratios, confidence intervals and p-values.
+- Compared the models using AIC and a likelihood ratio test.
+- Started documenting the findings and identifying further model diagnostic checks.
 
-**Files**-code/week4_Mao.R and outputs/week4
+**Files** `code/week4_Mao.R` and `outputs/week4`
