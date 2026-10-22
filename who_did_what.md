@@ -10,6 +10,7 @@ For Week 2, I worked on exploring the datasets and the relationships between var
 - Produced plots looking at the distributions of each variable individually, and then where applicable looked at distributions of two linked variables .
 - Fitted a linear model exploring the relationship between BMI & age.
 - Interpreted the results of the linear model through both plots and summary statistics to draw a conclusion regarding the validity of a linear model between these two variables
+
 **Files:**  
 
 
