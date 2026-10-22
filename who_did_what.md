@@ -2,14 +2,15 @@
 # Who Did What
 
 
+## Lefteris Panayiotis - Week 2: Normal Linear Regression
+For Week 2, I worked on exploring the datasets and the relationships between variables within the datasets, and applied a linear model to two of the variables.
 
-
-
-
-
-
-
-
+- Looked through both datasets and checked/classified the variables.
+- Produced summary statistics for both of the datasets
+- Produced plots looking at the distributions of each variable individually, and then where applicable looked at distributions of two linked variables .
+- Fitted a linear model exploring the relationship between BMI & age.
+- Interpreted the results of the linear model through both plots and summary statistics to draw a conclusion regarding the validity of a linear model between these two variables
+**Files:**  
 
 
 ## Mikael Garayev - Week 3: Introduction to GLMs
