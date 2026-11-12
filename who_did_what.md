@@ -48,7 +48,7 @@ For Week 6, I worked on identifying count outcomes in the datasets and fitting P
 
 - Reviewed both datasets and selected goals_scored and prev_injuries as appropriate count response variables.
 - Fitted Poisson GLMs for both variables, including testing a square-root link function alongside the default log link.   
-- Performed parsimonious model selection using the difference in deviances test (drop1).   
+- Performed parsimonious model selection using the difference in deviances test.   
 - Conducted goodness-of-fit tests by comparing residual deviances to a Chi-square distribution to check for potential overdispersion.   
 - Produced the standard diagnostic plots (residuals vs fitted, QQ-plots, Cook's distances, and leverage) to assess model fit.   
 - Implemented relative file paths in the R script to ensure the code runs seamlessly across the group's shared workspace.
