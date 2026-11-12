@@ -78,3 +78,39 @@ I will also save the R code and relevant outputs in the shared workspace, includ
 Finally, I will document any further modelling decisions and discuss the findings with the group before the final report is completed.
 
 These are my current findings from Week 4 and should not be treated as the group's final model selection.
+
+
+## Week 6 - Poisson Regression
+**Shajesh Jeyashanker | 12 November 2026**
+
+## Initial Exploration
+
+I started by reviewing both datasets to identify natural count outcomes suitable for Poisson regression. In the matches dataset, goals_scored is a count of events. In the players dataset, prev_injuries is also a clear example of count data.
+
+## Model choice 
+
+I used a Poisson GLM for both response variables. For the match data, I modelled goals_scored against home_away and opponent_rank. 
+
+I also fitted a second version using a square-root link function, as demonstrated in the Week 6 AIDS cases practical, to see if it provided a better fit than the default log link. 
+
+For the player data, I fitted a model for prev_injuries testing the explanatory effects of age, training_load, and position.
+
+## Observations
+
+A few things I noticed:
+
+• I used the drop1 function with a Chi-square test to check if any variables could be dropped to form a more parsimonious model, following the hierarchy principle.
+
+• I conducted a goodness-of-fit test by comparing the residual deviance to a Chi-square distribution.
+
+• If the goodness-of-fit p-value is very small, it suggests the Poisson model doesn't fit the data well and might suffer from overdispersion (greater variance than expected), similar to what we saw with the Galapagos tortoise dataset.
+
+## Next steps
+
+I checked the standard diagnostic plots, including residuals vs fitted values to look for lack of fit, and Cook’s distances to check for influential observations.
+
+If there is evidence of overdispersion, we may need to adjust our approach by using a quasipoisson family or a negative binomial model later in the project. 
+
+I will upload my R script to the group’s shared workspace and document my variable choices in our decision-notes file. 
+These are my current exploratory findings from Week 6 and should not be treated as the group's final model selection.
+
