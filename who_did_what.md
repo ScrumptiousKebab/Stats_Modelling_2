@@ -40,3 +40,16 @@ For Week 4, I worked on fitting and interpreting binomial logistic regression mo
 - Started documenting the findings and identifying further model diagnostic checks.
 
 **Files** `code/week4_Mao.R` and `outputs/week4`
+
+
+## Shajesh Jeyashanker - Week 6: Poisson Regression
+
+For Week 6, I worked on identifying count outcomes in the datasets and fitting Poisson regression models to them.
+
+- Reviewed both datasets and selected goals_scored and prev_injuries as appropriate count response variables.
+- Fitted Poisson GLMs for both variables, including testing a square-root link function alongside the default log link.   
+- Performed parsimonious model selection using the difference in deviances test (drop1).   
+- Conducted goodness-of-fit tests by comparing residual deviances to a Chi-square distribution to check for potential overdispersion.   
+- Produced the standard diagnostic plots (residuals vs fitted, QQ-plots, Cook's distances, and leverage) to assess model fit.   
+- Implemented relative file paths in the R script to ensure the code runs seamlessly across the group's shared workspace.
+
